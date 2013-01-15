@@ -3,21 +3,12 @@ package org.jcooke212.jftp;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-public class JFTP extends FragmentActivity implements ActionBar.TabListener {
+public class JFTP extends FragmentActivity implements ActionBar.TabListener 
+{
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -35,7 +26,8 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener {
 	ViewPager mViewPager;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jftp);
 
@@ -72,6 +64,9 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener {
 			actionBar.addTab(actionBar.newTab()
 					.setText("Local")
 					.setTabListener(this));
+			actionBar.addTab(actionBar.newTab()
+					.setText("Remote")
+					.setTabListener(this));
 		//}
 	}
 
@@ -100,32 +95,4 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener {
 			FragmentTransaction fragmentTransaction) {
 	}
 
-	/**
-	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-	 * one of the sections/tabs/pages.
-	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-		public SectionsPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new LocalFragment();
-			Bundle args = new Bundle();
-			args.putInt(LocalFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			// Show 1 total page(s).
-			return 1;
-		}
-	}
 }
