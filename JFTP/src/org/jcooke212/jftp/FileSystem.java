@@ -14,18 +14,15 @@ public class FileSystem extends Fragment
 	 * The fragment argument representing the section number for this
 	 * fragment.
 	 */
-	public static final String ARG_SECTION_NUMBER = "section_number";
 
 	public FileSystem()
 	{}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	{
 		TextView textView = new TextView(getActivity());
 		textView.setGravity(Gravity.CENTER);
-		textView.setText(ARG_SECTION_NUMBER);
 		return textView;
 	}
 }

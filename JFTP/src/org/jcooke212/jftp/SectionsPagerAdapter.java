@@ -21,7 +21,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 		// below) with the page number as its lone argument.
 		Fragment fragment = new FileSystem();
 		Bundle args = new Bundle();
-		args.putInt(FileSystem.ARG_SECTION_NUMBER, position + 1);
 		fragment.setArguments(args);
 		return fragment;
 	}
