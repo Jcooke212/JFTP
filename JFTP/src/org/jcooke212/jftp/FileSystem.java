@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class LocalFragment extends Fragment 
+public class FileSystem extends Fragment 
 {
 	/**
 	 * The fragment argument representing the section number for this
@@ -16,7 +16,7 @@ public class LocalFragment extends Fragment
 	 */
 	public static final String ARG_SECTION_NUMBER = "section_number";
 
-	public LocalFragment()
+	public FileSystem()
 	{}
 
 	@Override
@@ -25,7 +25,7 @@ public class LocalFragment extends Fragment
 	{
 		TextView textView = new TextView(getActivity());
 		textView.setGravity(Gravity.CENTER);
-		textView.setText("Local Storage");
+		textView.setText(ARG_SECTION_NUMBER);
 		return textView;
 	}
 }
