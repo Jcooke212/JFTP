@@ -1,11 +1,9 @@
 package org.jcooke212.jftp;
 
-import android.os.Bundle;
+import java.util.ArrayList;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 
 public class FileSystem extends ListFragment 
 {
@@ -14,13 +12,19 @@ public class FileSystem extends ListFragment
      */
     
     public static final String ARG_DISPLAY_TYPE = "display_type";
+    public ArrayList<String> list = new ArrayList<String>();
     
-    public FileSystem(){}
+    public FileSystem()
+    {	
+	list.add("Test again");
+	list.add("This better work!!");
+	list.add("Im sick of this!!!!");
+    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+    public void onResume()
     {
-	ListView listView = (ListView) getActivity().findViewById(R.id.list);
-	return listView;
+	super.onResume();
+	ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
+	setListAdapter(adapter);
     }
 }
