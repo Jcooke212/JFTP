@@ -16,9 +16,9 @@ public class FSListFrag extends ListFragment
     
     public FSListFrag()
     {	
-	list.add("Test again");
-	list.add("This better work!!");
-	list.add("Im sick of this!!!!");
+	list.add("This is");
+	list.add("the unchanged");
+	list.add("list");
     }
 
     public void onResume()
@@ -27,8 +27,13 @@ public class FSListFrag extends ListFragment
 	String type = getArguments().getString(ARG_DISPLAY_TYPE);
 	if(type.equals("display_local"))
 	{
-	    ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
-	    setListAdapter(adapter);
+	    FSHandler.LocalSystem.getFileSystem(list);
 	}
+	else if(type.equals("display_remote"))
+	{
+	    
+	}
+	ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
+	setListAdapter(adapter);
     }
 }
