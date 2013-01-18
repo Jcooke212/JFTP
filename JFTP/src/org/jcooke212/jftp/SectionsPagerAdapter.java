@@ -16,8 +16,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	@Override
 	public Fragment getItem(int position) 
 	{
-		Fragment fragment = new FileSystem();
+		Fragment fragment = new FSListFrag();
 		Bundle args = new Bundle();
+		if(position == 0)
+		{
+		    args.putString(FSListFrag.ARG_DISPLAY_TYPE, "display_local");
+		}
+		else
+		{
+		    args.putString(FSListFrag.ARG_DISPLAY_TYPE, "display_remote");
+		}
 		fragment.setArguments(args);
 		return fragment;
 	}
