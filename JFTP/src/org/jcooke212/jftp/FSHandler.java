@@ -34,6 +34,11 @@ public class FSHandler
 	    if(dir.isDirectory())
 	    {
 		list.clear();
+		if(dir.getName() != Environment.getExternalStorageDirectory().getName())
+		{
+		    list.add("..");
+		}
+
 		File[] files = dir.listFiles();
 		for(File x: files)
 		{
