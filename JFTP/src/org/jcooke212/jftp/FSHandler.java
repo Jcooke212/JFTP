@@ -51,6 +51,7 @@ public class FSHandler
 		    else
 			{
 		    	Toast.makeText(appContext, R.string.not_dir, Toast.LENGTH_LONG).show();
+		    	currentDir = currentDir.substring(0, currentDir.lastIndexOf("/"));
 			}
 		}
     }
