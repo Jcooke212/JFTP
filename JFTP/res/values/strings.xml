@@ -3,5 +3,7 @@
 
     <string name="app_name">JFTP</string>
     <string name="menu_settings">Settings</string>
+    <string name="res_error">There was a problem resolving directory paths.</string>
+    <string name="not_dir">This is not a directory</string>
 
 </resources>
