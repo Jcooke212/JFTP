@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class JFTP extends FragmentActivity implements ActionBar.TabListener 
 {
@@ -67,7 +68,9 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener
 		getMenuInflater().inflate(R.menu.activity_jftp, menu);
 		return true;
 	}
-	public boolean onOptionItemClicked(MenuItem item)
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch(item.getItemId())
 		{
@@ -78,6 +81,7 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener
 				return super.onOptionsItemSelected(item);	
 		}
 	}
+	
 	private void startSettings()
 	{
 		Intent iSettings = new Intent(this, JFTP_settings.class);
