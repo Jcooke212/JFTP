@@ -19,15 +19,9 @@ public class FSListFrag extends ListFragment
     public ArrayList<String> list = new ArrayList<String>();
     public ArrayAdapter<String> adapter;
     
-    public FSListFrag()
-    {	
-		list.add("This is");
-		list.add("the unchanged");
-		list.add("list");
-    }
-
     public void onResume()
     {
+    	this.setEmptyText("Use the menu to add a server");
 		super.onResume();
 		String type = getArguments().getString(ARG_DISPLAY_TYPE);
 		if(type.equals("display_local"))
@@ -36,7 +30,6 @@ public class FSListFrag extends ListFragment
 		}
 		else if(type.equals("display_remote"))
 		{
-		    
 		}
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
 		setListAdapter(adapter);
