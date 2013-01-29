@@ -16,7 +16,8 @@ public class ServerFragmentAdapter extends FragmentPagerAdapter
 	public Fragment getItem(int arg0) 
 	{
 		count = arg0;
-		return null;
+		ServersFragment frag = new ServersFragment();
+		return frag;
 	}
 
 	@Override

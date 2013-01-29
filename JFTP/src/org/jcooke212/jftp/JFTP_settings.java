@@ -55,6 +55,7 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 				actionBar.setSelectedNavigationItem(position);
 			}
 		});
+		actionBar.addTab(actionBar.newTab().setText("Test").setTabListener(this));
 	}
 
 	@Override
