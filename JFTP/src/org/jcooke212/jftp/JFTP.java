@@ -2,10 +2,12 @@ package org.jcooke212.jftp;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class JFTP extends FragmentActivity implements ActionBar.TabListener 
 {
@@ -65,7 +67,22 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener
 		getMenuInflater().inflate(R.menu.activity_jftp, menu);
 		return true;
 	}
-
+	public boolean onOptionItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+			case R.id.menu_settings:
+				startSettings();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);	
+		}
+	}
+	private void startSettings()
+	{
+		Intent iSettings = new Intent(this, JFTP_settings.class);
+		this.startActivity(iSettings);
+	}
 	@Override
 	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
 	{

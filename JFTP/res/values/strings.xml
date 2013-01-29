@@ -6,5 +6,6 @@
     <string name="res_error">There was a problem resolving directory paths.</string>
     <string name="not_dir">This is not a directory</string>
     <string name="no_conn">Use the menu button to add a remote server</string>
+    <string name="settings_name">JFTP Settings</string>
 
 </resources>
