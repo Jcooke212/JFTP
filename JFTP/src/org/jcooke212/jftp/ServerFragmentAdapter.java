@@ -6,22 +6,23 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class ServerFragmentAdapter extends FragmentPagerAdapter 
 {
-
+	private int count = 0;
 	public ServerFragmentAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Fragment getItem(int arg0) {
-		// TODO Auto-generated method stub
+	public Fragment getItem(int arg0) 
+	{
+		count = arg0;
 		return null;
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return count;
 	}
 
 }

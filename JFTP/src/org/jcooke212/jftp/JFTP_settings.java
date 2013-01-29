@@ -2,7 +2,6 @@ package org.jcooke212.jftp;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -20,7 +19,7 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 	 * intensive, it may be best to switch to a
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	ServerFragmentAdapter mSectionsPagerAdapter;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -39,7 +38,7 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+		mSectionsPagerAdapter = new ServerFragmentAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager2);
@@ -56,26 +55,24 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 				actionBar.setSelectedNavigationItem(position);
 			}
 		});
-		actionBar.addTab(actionBar.newTab().setText("Local").setTabListener(this));
-		actionBar.addTab(actionBar.newTab().setText("Remote").setTabListener(this));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_jftp, menu);
+		getMenuInflater().inflate(R.menu.activity_jftp_settings, menu);
 		return true;
 	}
-	public boolean onOptionItemClicked(MenuItem item)
+	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		return true;
+		switch (item.getItemId())
+		{
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
-	private void startSettings()
-	{
-		Intent iSettings = new Intent(this, JFTP_settings.class);
-		this.startActivity(iSettings);
-	}
+
 	@Override
 	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
 	{
