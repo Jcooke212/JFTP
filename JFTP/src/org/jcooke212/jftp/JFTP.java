@@ -67,7 +67,7 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener
 		getMenuInflater().inflate(R.menu.activity_jftp, menu);
 		return true;
 	}
-	public boolean onOptionItemSelected(MenuItem item)
+	public boolean onOptionItemClicked(MenuItem item)
 	{
 		switch(item.getItemId())
 		{
@@ -81,7 +81,7 @@ public class JFTP extends FragmentActivity implements ActionBar.TabListener
 	private void startSettings()
 	{
 		Intent iSettings = new Intent(this, JFTP_settings.class);
-		this.startActivity(iSettings);
+		startActivity(iSettings);
 	}
 	@Override
 	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
