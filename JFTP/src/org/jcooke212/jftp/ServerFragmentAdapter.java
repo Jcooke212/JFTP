@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class ServerFragmentAdapter extends FragmentPagerAdapter 
 {
-	private int count = 0;
+	private int count = 3;
 	public ServerFragmentAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
@@ -15,7 +15,6 @@ public class ServerFragmentAdapter extends FragmentPagerAdapter
 	@Override
 	public Fragment getItem(int arg0) 
 	{
-		count = arg0;
 		ServersFragment frag = new ServersFragment();
 		return frag;
 	}

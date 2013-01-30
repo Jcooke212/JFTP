@@ -13,5 +13,10 @@
     <string name="port_number">Port Default:22</string>
     <string name="user_name">User Name</string>
     <string name="srv_nickname">Nickname</string>
+    <string-array name="conn_types">
+        <item >FTP</item>
+        <item >FTPS</item>
+    </string-array>
+    <string name="save_server">Save</string>
 
 </resources>

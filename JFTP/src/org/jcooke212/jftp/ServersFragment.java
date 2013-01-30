@@ -12,7 +12,6 @@ public class ServersFragment extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	{
-		// TODO Auto-generated method stub
 		View myView = inflater.inflate(R.layout.server_frag, container, false);
 		return myView;
 	}

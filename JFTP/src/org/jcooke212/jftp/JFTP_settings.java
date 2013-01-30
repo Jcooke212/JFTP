@@ -55,7 +55,9 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 				actionBar.setSelectedNavigationItem(position);
 			}
 		});
-		actionBar.addTab(actionBar.newTab().setText("Test").setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText("Server 1").setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText("Server 2").setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText("Server 3").setTabListener(this));
 	}
 
 	@Override
@@ -69,9 +71,24 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 	{
 		switch (item.getItemId())
 		{
+			case R.id.del_server:
+				deleteCurrent();
+				return true;
+			case R.id.save_server:
+				saveCurrent();
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void saveCurrent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void deleteCurrent() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
