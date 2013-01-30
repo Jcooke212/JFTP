@@ -1,5 +1,6 @@
 package org.jcooke212.jftp;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -81,7 +82,7 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		switch (item.getItemId())
 		{
 			case R.id.del_server:
-				deleteCurrent();
+				deleteCurrent("Server" + currentTab);
 				return true;
 			case R.id.save_server:
 				saveCurrent();
@@ -89,7 +90,9 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 				return super.onOptionsItemSelected(item);
 		}
 	}
-
+	/**
+	 *  Save the current tab
+	 */
 	private void saveCurrent() 
 	{
 		EditText text;
@@ -106,39 +109,39 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		{
 			byte[] bArray = serverInfo.getBytes();
 			FileOutputStream dataOut = openFileOutput("Server" + currentTab, Context.MODE_PRIVATE);
+			Toast.makeText(this, "Server" + currentTab, Toast.LENGTH_SHORT).show();
 			dataOut.write(bArray);
 			dataOut.flush();
 			dataOut.close();
 		} 
 		catch (Exception e) 
 		{
-			Toast.makeText(this, "Problem saving file.", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Problem saving file.", Toast.LENGTH_SHORT).show();
 		}
 		spin = null;
 		text = null;
 	}
 
-	private void deleteCurrent() 
+	private void deleteCurrent(String target) 
 	{
+		File appStorage = this.getFilesDir();
+		File[] files = appStorage.listFiles();
 		try 
 		{
-			StringBuffer fileContent = new StringBuffer("");
-			int length;
-			FileInputStream dataIn = openFileInput("Server" + currentTab);
-			byte[] bArray = new byte[1024];
-			while ((length = dataIn.read(bArray)) != -1) 
+			for(File file: files)
 			{
-			    fileContent.append(new String(bArray));
+				if(file.getName().equals(target))
+				{
+					file.delete();
+				}
 			}
-			
-			Toast.makeText(this, fileContent.toString(), Toast.LENGTH_LONG).show();
-		} catch (FileNotFoundException e) {
+		} 
+		catch (Exception ex) 
+		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+		} 
+
 		
 	}
 
@@ -157,6 +160,8 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 
 	@Override
 	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
-	{}
+	{
+		currentTab = tab.getPosition();
+	}
 
 }
