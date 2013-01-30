@@ -17,5 +17,6 @@
         <item >FTPS</item>
     </string-array>
     <string name="save_server">Save</string>
+    <string name="disconnect_server">Disconnect</string>
 
 </resources>
