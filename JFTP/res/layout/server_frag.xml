@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/port"
             android:layout_alignRight="@+id/port"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/port"
             android:layout_marginTop="20dp"
             android:entries="@array/conn_types" />
 
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/connType"
-            android:layout_alignRight="@+id/connType"
+            android:layout_alignRight="@+id/port"
             android:layout_below="@+id/connType"
             android:layout_marginTop="20dp" />
 

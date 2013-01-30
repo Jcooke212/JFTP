@@ -1,12 +1,21 @@
 package org.jcooke212.jftp;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 public class JFTP_settings extends FragmentActivity implements ActionBar.TabListener 
 {
@@ -20,7 +29,7 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	ServerFragmentAdapter mSectionsPagerAdapter;
-
+	private int currentTab;
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
@@ -81,13 +90,55 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		}
 	}
 
-	private void saveCurrent() {
-		// TODO Auto-generated method stub
-		
+	private void saveCurrent() 
+	{
+		EditText text;
+		String serverInfo = new String();
+		text = (EditText)findViewById(R.id.uname);
+		serverInfo += text.getText() + ";";
+		text = (EditText)findViewById(R.id.ip_address);
+		serverInfo += text.getText() + ";";
+		text = (EditText)findViewById(R.id.port);
+		serverInfo += text.getText() + ";";
+		Spinner spin = (Spinner)findViewById(R.id.connType);
+		serverInfo += spin.getSelectedItem();
+		try 
+		{
+			byte[] bArray = serverInfo.getBytes();
+			FileOutputStream dataOut = openFileOutput("Server" + currentTab, Context.MODE_PRIVATE);
+			dataOut.write(bArray);
+			dataOut.flush();
+			dataOut.close();
+		} 
+		catch (Exception e) 
+		{
+			Toast.makeText(this, "Problem saving file.", Toast.LENGTH_LONG).show();
+		}
+		spin = null;
+		text = null;
 	}
 
-	private void deleteCurrent() {
-		// TODO Auto-generated method stub
+	private void deleteCurrent() 
+	{
+		try 
+		{
+			StringBuffer fileContent = new StringBuffer("");
+			int length;
+			FileInputStream dataIn = openFileInput("Server" + currentTab);
+			byte[] bArray = new byte[1024];
+			while ((length = dataIn.read(bArray)) != -1) 
+			{
+			    fileContent.append(new String(bArray));
+			}
+			
+			Toast.makeText(this, fileContent.toString(), Toast.LENGTH_LONG).show();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -97,6 +148,7 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
+		currentTab = tab.getPosition();
 	}
 
 	@Override

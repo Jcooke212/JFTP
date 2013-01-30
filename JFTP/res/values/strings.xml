@@ -7,7 +7,6 @@
     <string name="not_dir">This is not a directory</string>
     <string name="no_conn">Use the menu button to add a remote server</string>
     <string name="settings_name">JFTP Settings</string>
-    <string name="new_server">Create</string>
     <string name="del_server">Delete</string>
     <string name="ip_address">IP Address</string>
     <string name="port_number">Port Default:22</string>
