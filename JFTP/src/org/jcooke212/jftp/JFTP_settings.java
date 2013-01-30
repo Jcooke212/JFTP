@@ -18,24 +18,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/*****************************************************************************************************
+ * The activity that manages the server connection settings
+ * @author James Cooke
+ *****************************************************************************************************/
 public class JFTP_settings extends FragmentActivity implements ActionBar.TabListener 
 {
 
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
-	ServerFragmentAdapter mSectionsPagerAdapter;
+	private ServerFragmentAdapter mSectionsPagerAdapter;
 	private int currentTab;
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
-	ViewPager mViewPager;
+	private ViewPager mViewPager;
 
+	/*************************************************************************************************
+	 * Add three server tabs to the @ActionBar for this activity.
+	 *************************************************************************************************/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -46,17 +42,14 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
+		// Create the adapter that will return a fragment for each of the app's primary sections.
 		mSectionsPagerAdapter = new ServerFragmentAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager2);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
+		// When swiping between different sections, select the corresponding tab.
 		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() 
 		{
 			@Override
@@ -70,6 +63,9 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		actionBar.addTab(actionBar.newTab().setText("Server 3").setTabListener(this));
 	}
 
+	/*************************************************************************************************
+	 * Create the options menu from XML.
+	 *************************************************************************************************/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -77,6 +73,10 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		getMenuInflater().inflate(R.menu.activity_jftp_settings, menu);
 		return true;
 	}
+	
+	/*************************************************************************************************
+	 * Define behavior for menu item clicks.
+	 *************************************************************************************************/
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId())
@@ -90,9 +90,10 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 				return super.onOptionsItemSelected(item);
 		}
 	}
-	/**
-	 *  Save the current tab
-	 */
+	
+	/*************************************************************************************************
+	 *  Save the current tab to a file in private app data. (This is currently insecure)
+	 *************************************************************************************************/
 	private void saveCurrent() 
 	{
 		EditText text;
@@ -122,6 +123,10 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		text = null;
 	}
 
+	/*************************************************************************************************
+	 * Delete a file containing server info from the system.
+	 * @param target name of the file to be deleted.
+	 *************************************************************************************************/
 	private void deleteCurrent(String target) 
 	{
 		File appStorage = this.getFilesDir();
@@ -141,10 +146,12 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 			// TODO Auto-generated catch block
 			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
 		} 
-
-		
 	}
 
+	/*************************************************************************************************
+	 * When a tab is selected set it as the current item. And track the current tab with the 
+	 * currentTab variable.
+	 *************************************************************************************************/
 	@Override
 	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
 	{
@@ -154,10 +161,16 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		currentTab = tab.getPosition();
 	}
 
+	/*************************************************************************************************
+	 * Do nothing when a tab is unselected
+	 *************************************************************************************************/
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
 	{}
 
+	/*************************************************************************************************
+	 * When a tab is reselected update the current tab variable. 
+	 *************************************************************************************************/
 	@Override
 	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
 	{

@@ -4,14 +4,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+/*****************************************************************************************************
+ * Handles the creation of Fragments for the tabs in JFTP_settings
+ * @author James Cooke
+ *****************************************************************************************************/
 public class ServerFragmentAdapter extends FragmentPagerAdapter 
 {
 	private int count = 3;
-	public ServerFragmentAdapter(FragmentManager fm) {
+	
+	/*************************************************************************************************
+	 * Do nothing then pass the fragment manager to the superclass' constructor
+	 * @param fm Do nothing with this so pass it to the constructor for the super class
+	 *************************************************************************************************/
+	public ServerFragmentAdapter(FragmentManager fm)
+	{
 		super(fm);
-		// TODO Auto-generated constructor stub
 	}
 
+	/*************************************************************************************************
+	 * Create an @ServersFragment to display and collect information about a remote server
+	 *************************************************************************************************/
 	@Override
 	public Fragment getItem(int arg0) 
 	{
@@ -19,9 +31,12 @@ public class ServerFragmentAdapter extends FragmentPagerAdapter
 		return frag;
 	}
 
+	/*************************************************************************************************
+	 * Return the number of server fragments (This is limited to three for now)
+	 *************************************************************************************************/
 	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
+	public int getCount() 
+	{
 		return count;
 	}
 
