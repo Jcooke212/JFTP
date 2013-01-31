@@ -104,12 +104,16 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		String serverInfo = new String();
 		text = (EditText)findViewById(R.id.uname);
 		serverInfo += text.getText() + ";";
+		text.setEnabled(false);
 		text = (EditText)findViewById(R.id.ip_address);
 		serverInfo += text.getText() + ";";
+		text.setEnabled(false);
 		text = (EditText)findViewById(R.id.port);
 		serverInfo += text.getText() + ";";
+		text.setEnabled(false);
 		Spinner spin = (Spinner)findViewById(R.id.connType);
 		serverInfo += spin.getSelectedItem();
+		spin.setEnabled(false);
 		try 
 		{
 			byte[] bArray = serverInfo.getBytes();

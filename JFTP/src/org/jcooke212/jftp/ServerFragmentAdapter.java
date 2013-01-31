@@ -1,5 +1,6 @@
 package org.jcooke212.jftp;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  *****************************************************************************************************/
 public class ServerFragmentAdapter extends FragmentPagerAdapter 
 {
-	private int count = 3;
+	private int count = 0;
 	
 	/*************************************************************************************************
 	 * Do nothing then pass the fragment manager to the superclass' constructor
@@ -28,6 +29,10 @@ public class ServerFragmentAdapter extends FragmentPagerAdapter
 	public Fragment getItem(int arg0) 
 	{
 		ServersFragment frag = new ServersFragment();
+		Bundle args = new Bundle();
+		args.putInt(ServersFragment.SERVER_NUMBER_STRING, count);
+		frag.setArguments(args);
+		count++;
 		return frag;
 	}
 
@@ -37,7 +42,7 @@ public class ServerFragmentAdapter extends FragmentPagerAdapter
 	@Override
 	public int getCount() 
 	{
-		return count;
+		return 3;
 	}
 
 }
