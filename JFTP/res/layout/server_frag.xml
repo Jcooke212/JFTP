@@ -37,7 +37,8 @@
             android:layout_below="@+id/ip_address"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="@string/port_number" />
+            android:hint="@string/port_number" 
+            android:inputType="number"/>
 
         <Spinner
             android:id="@+id/connType"

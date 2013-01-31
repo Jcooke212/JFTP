@@ -1,10 +1,14 @@
 package org.jcooke212.jftp;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.NoSuchPaddingException;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -117,7 +121,8 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		} 
 		catch (Exception e) 
 		{
-			Toast.makeText(this, "Problem saving file.", Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 		spin = null;
 		text = null;

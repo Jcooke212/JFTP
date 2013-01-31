@@ -8,7 +8,7 @@
     <string name="no_conn">Use the menu button to add a remote server</string>
     <string name="settings_name">JFTP Settings</string>
     <string name="del_server">Delete</string>
-    <string name="ip_address">IP Address</string>
+    <string name="ip_address">URL/IP Address</string>
     <string name="port_number">Port Default:22</string>
     <string name="user_name">User Name</string>
     <string name="srv_nickname">Nickname</string>
