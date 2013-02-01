@@ -1,25 +1,13 @@
 package org.jcooke212.jftp;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Cipher;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.NoSuchPaddingException;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 /*****************************************************************************************************
@@ -88,48 +76,9 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 			case R.id.del_server:
 				deleteCurrent("Server" + currentTab);
 				return true;
-			case R.id.save_server:
-				saveCurrent();
 			default:
 				return super.onOptionsItemSelected(item);
 		}
-	}
-	
-	/*************************************************************************************************
-	 *  Save the current tab to a file in private app data. (This is currently insecure)
-	 *************************************************************************************************/
-	private void saveCurrent() 
-	{
-		EditText text;
-		String serverInfo = new String();
-		text = (EditText)findViewById(R.id.uname);
-		serverInfo += text.getText() + ";";
-		text.setEnabled(false);
-		text = (EditText)findViewById(R.id.ip_address);
-		serverInfo += text.getText() + ";";
-		text.setEnabled(false);
-		text = (EditText)findViewById(R.id.port);
-		serverInfo += text.getText() + ";";
-		text.setEnabled(false);
-		Spinner spin = (Spinner)findViewById(R.id.connType);
-		serverInfo += spin.getSelectedItem();
-		spin.setEnabled(false);
-		try 
-		{
-			byte[] bArray = serverInfo.getBytes();
-			FileOutputStream dataOut = openFileOutput("Server" + currentTab, Context.MODE_PRIVATE);
-			Toast.makeText(this, "Server" + currentTab, Toast.LENGTH_SHORT).show();
-			dataOut.write(bArray);
-			dataOut.flush();
-			dataOut.close();
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-		}
-		spin = null;
-		text = null;
 	}
 
 	/*************************************************************************************************
@@ -152,9 +101,9 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		} 
 		catch (Exception ex) 
 		{
-			// TODO Auto-generated catch block
 			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
 		} 
+		//getActionBar().get
 	}
 
 	/*************************************************************************************************
