@@ -15,8 +15,6 @@
             android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="@string/user_name" >
-
-            <requestFocus />
         </EditText>
 
         <ToggleButton
@@ -28,24 +26,13 @@
             android:layout_below="@+id/spn_connType"
             android:layout_marginTop="20dp" />
 
-        <Button
-            android:id="@+id/btn_lock"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tbtn_active"
-            android:layout_alignRight="@+id/tbtn_active"
-            android:layout_below="@+id/tbtn_active"
-            android:layout_marginTop="17dp"
-            android:text="Button" />
-
         <EditText
             android:id="@+id/et_ipaddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/et_uname"
             android:layout_below="@+id/et_uname"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="@string/ip_address" />
 
@@ -67,9 +54,31 @@
             android:layout_alignLeft="@+id/et_port"
             android:layout_alignRight="@+id/et_port"
             android:layout_below="@+id/et_port"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:entries="@array/conn_types" />
 
+        <LinearLayout
+            android:id="@+id/layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tbtn_active"
+            android:layout_alignRight="@+id/tbtn_active"
+            android:layout_below="@+id/tbtn_active" >
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/del_server" />
+
+            <Button
+                android:id="@+id/btn_lock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/save_server" />
+        </LinearLayout>
     </RelativeLayout>
 
 </ScrollView>
