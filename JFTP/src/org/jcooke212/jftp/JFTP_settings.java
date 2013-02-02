@@ -65,46 +65,6 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		getMenuInflater().inflate(R.menu.activity_jftp_settings, menu);
 		return true;
 	}
-	
-	/*************************************************************************************************
-	 * Define behavior for menu item clicks.
-	 *************************************************************************************************/
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-			case R.id.del_server:
-				deleteCurrent("Server" + currentTab);
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
-
-	/*************************************************************************************************
-	 * Delete a file containing server info from the system.
-	 * @param target name of the file to be deleted.
-	 *************************************************************************************************/
-	private void deleteCurrent(String target) 
-	{
-		File appStorage = this.getFilesDir();
-		File[] files = appStorage.listFiles();
-		try 
-		{
-			for(File file: files)
-			{
-				if(file.getName().equals(target))
-				{
-					file.delete();
-				}
-			}
-		} 
-		catch (Exception ex) 
-		{
-			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-		} 
-		//getActionBar().get
-	}
 
 	/*************************************************************************************************
 	 * When a tab is selected set it as the current item. And track the current tab with the 

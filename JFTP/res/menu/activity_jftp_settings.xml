@@ -1,5 +1,4 @@
 
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:id="@+id/del_server" android:title="@string/del_server" android:orderInCategory="100" android:showAsAction="never"></item>
         
     </menu>

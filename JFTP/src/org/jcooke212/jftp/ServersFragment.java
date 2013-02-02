@@ -1,5 +1,6 @@
 package org.jcooke212.jftp;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -31,8 +32,10 @@ public class ServersFragment extends Fragment implements OnClickListener
 	{
 		int tabNumber = getArguments().getInt(SERVER_NUMBER_STRING);
 		View myView = inflater.inflate(R.layout.server_frag, container, false);
-		Button lockButton = (Button) myView.findViewById(R.id.btn_lock);
-		lockButton.setOnClickListener(this);
+		Button button = (Button) myView.findViewById(R.id.btn_lock);
+		button.setOnClickListener(this);
+		button = (Button) myView.findViewById(R.id.btn_delete);
+		button.setOnClickListener(this);
 		try 
 		{
 			StringBuffer fileContent = new StringBuffer("");
@@ -100,7 +103,13 @@ public class ServersFragment extends Fragment implements OnClickListener
 	@Override
 	public void onClick(View v) 
 	{
-		saveCurrent((View) v.getParent());
+		switch(v.getId())
+		{
+			case R.id.btn_delete:
+				this.deleteCurrent((View) v.getParent().getParent());
+			case R.id.btn_lock:
+				this.saveCurrent((View) v.getParent().getParent());
+		}
 	}
 
 	/**
@@ -110,7 +119,7 @@ public class ServersFragment extends Fragment implements OnClickListener
 	private void saveCurrent(View parent) 
 	{
 		EditText text;
-		String serverInfo = new String();
+		String serverInfo = new String("");
 		text = (EditText)parent.findViewById(R.id.et_uname);
 		serverInfo += text.getText() + ";";
 		text.setEnabled(false);
@@ -143,4 +152,43 @@ public class ServersFragment extends Fragment implements OnClickListener
 		text = null;
 	}
 
+
+	/*************************************************************************************************
+	 * Delete a file containing server info from the system and re-enable form fields of this 
+	 * fragment.
+	 * @param target The file inside the private storage directory that should be deleted.
+	 *************************************************************************************************/
+	private void deleteCurrent(View parent) 
+	{
+		int currentTab = getActivity().getActionBar().getSelectedNavigationIndex();
+		String target = new String("Server" + currentTab);
+		File appStorage = getActivity().getFilesDir();
+		File[] files = appStorage.listFiles();
+		try 
+		{
+			for(File file: files)
+			{
+				if(file.getName().equals(target))
+				{
+					file.delete();
+				}
+			}
+		} 
+		catch (Exception ex) 
+		{
+			Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+		} 
+		EditText text;
+		text = (EditText)parent.findViewById(R.id.et_uname);
+		text.setText(null);
+		text.setEnabled(true);
+		text = (EditText)parent.findViewById(R.id.et_ipaddress);
+		text.setText(null);
+		text.setEnabled(true);
+		text = (EditText)parent.findViewById(R.id.et_port);
+		text.setText(null);
+		text.setEnabled(true);
+		Spinner spin = (Spinner)parent.findViewById(R.id.spn_connType);
+		spin.setEnabled(true);
+	}
 }
