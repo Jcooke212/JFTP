@@ -23,9 +23,13 @@ import android.widget.Toast;
  *****************************************************************************************************/
 public class ServersFragment extends Fragment implements OnClickListener 
 {
+	
 	final public static String SERVER_NUMBER_STRING = "server_number";
+	final public static String SERVER_FRAG_DELIMETER = ";";
+	
 	/*************************************************************************************************
-	 * Use the information in server_frag.xml to set up this fragments view
+	 * Use the information in server_frag.xml to set up this fragments view and load the file 
+	 * associated with this fragment if it exists.
 	 *************************************************************************************************/
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
@@ -42,7 +46,7 @@ public class ServersFragment extends Fragment implements OnClickListener
 			@SuppressWarnings("unused")
 			int length;
 			FileInputStream dataIn = getActivity().openFileInput("Server" + tabNumber);
-			byte[] bArray = new byte[64];
+			byte[] bArray = new byte[15];
 			while ((length = dataIn.read(bArray)) != -1) 
 			{
 			    fileContent.append(new String(bArray));
@@ -54,7 +58,6 @@ public class ServersFragment extends Fragment implements OnClickListener
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-
 		return myView;
 	}
 	
@@ -66,23 +69,17 @@ public class ServersFragment extends Fragment implements OnClickListener
 	 *************************************************************************************************/
 	private void loadFile(String target, View container)
 	{
-		String[] info = target.split(";");
+		String[] info = target.split(SERVER_FRAG_DELIMETER);
 		EditText et;
-		// Set username.
 		et = (EditText) container.findViewById(R.id.et_uname);
+		et.setEnabled(false);
 		et.setText(info[0]);
-		et.setEnabled(false);
-		// Set Ip Address.
 		et = (EditText) container.findViewById(R.id.et_ipaddress);
+		et.setEnabled(false);
 		et.setText(info[1]);
-		et.setEnabled(false);
-		// Set port.
 		et = (EditText) container.findViewById(R.id.et_port);
-		et.setText(info[2]);
 		et.setEnabled(false);
-		// We are done with the EditText now.
-		et = null;
-		// Set connection type.
+		et.setText(info[2]);
 		Spinner spinner = (Spinner) container.findViewById(R.id.spn_connType);
 		if(info[3].equals("FTP"))
 		{
@@ -92,7 +89,7 @@ public class ServersFragment extends Fragment implements OnClickListener
 		{
 			spinner.setSelection(1);
 		}
-		
+		spinner.setEnabled(false);
 	}
 
 	
@@ -107,8 +104,11 @@ public class ServersFragment extends Fragment implements OnClickListener
 		{
 			case R.id.btn_delete:
 				this.deleteCurrent((View) v.getParent().getParent());
+				break;
 			case R.id.btn_lock:
+				v.setEnabled(false);
 				this.saveCurrent((View) v.getParent().getParent());
+				break;
 		}
 	}
 
@@ -121,17 +121,17 @@ public class ServersFragment extends Fragment implements OnClickListener
 		EditText text;
 		String serverInfo = new String("");
 		text = (EditText)parent.findViewById(R.id.et_uname);
-		serverInfo += text.getText() + ";";
 		text.setEnabled(false);
+		serverInfo += text.getText() + SERVER_FRAG_DELIMETER;
 		text = (EditText)parent.findViewById(R.id.et_ipaddress);
-		serverInfo += text.getText() + ";";
 		text.setEnabled(false);
+		serverInfo += text.getText() + SERVER_FRAG_DELIMETER;
 		text = (EditText)parent.findViewById(R.id.et_port);
-		serverInfo += text.getText() + ";";
 		text.setEnabled(false);
+		serverInfo += text.getText() + SERVER_FRAG_DELIMETER;
 		Spinner spin = (Spinner)parent.findViewById(R.id.spn_connType);
-		serverInfo += spin.getSelectedItem();
 		spin.setEnabled(false);
+		serverInfo += spin.getSelectedItem();
 		try 
 		{
 			Activity activity = getActivity();
@@ -148,8 +148,6 @@ public class ServersFragment extends Fragment implements OnClickListener
 			e.printStackTrace();
 			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-		spin = null;
-		text = null;
 	}
 
 
@@ -178,17 +176,21 @@ public class ServersFragment extends Fragment implements OnClickListener
 		{
 			Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
 		} 
-		EditText text;
-		text = (EditText)parent.findViewById(R.id.et_uname);
-		text.setText(null);
-		text.setEnabled(true);
-		text = (EditText)parent.findViewById(R.id.et_ipaddress);
-		text.setText(null);
-		text.setEnabled(true);
-		text = (EditText)parent.findViewById(R.id.et_port);
-		text.setText(null);
-		text.setEnabled(true);
-		Spinner spin = (Spinner)parent.findViewById(R.id.spn_connType);
-		spin.setEnabled(true);
+		finally
+		{
+			EditText text;
+			text = (EditText)parent.findViewById(R.id.et_uname);
+			text.setEnabled(true);
+			text.setText("");
+			text = (EditText)parent.findViewById(R.id.et_ipaddress);
+			text.setEnabled(true);
+			text.setText("");
+			text = (EditText)parent.findViewById(R.id.et_port);
+			text.setEnabled(true);
+			text.setText("");
+			Spinner spin = (Spinner)parent.findViewById(R.id.spn_connType);
+			spin.setEnabled(true);
+			parent.findViewById(R.id.btn_lock).setEnabled(true);
+		}
 	}
 }
