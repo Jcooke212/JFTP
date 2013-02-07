@@ -93,10 +93,10 @@ public class ServersFragment extends Fragment implements OnClickListener
 	}
 
 	
-	/**
-	 * 
-	 * @param v
-	 */
+	/*************************************************************************************************
+	 * If delete button is clicked delete the file and unlock form fields.
+	 * @param v The view containing the EditTexts to unlock.
+	 *************************************************************************************************/
 	@Override
 	public void onClick(View v) 
 	{
@@ -112,10 +112,10 @@ public class ServersFragment extends Fragment implements OnClickListener
 		}
 	}
 
-	/**
-	 * 
-	 * @param parent
-	 */
+	/*************************************************************************************************
+	 * Save the information in the Fragment to the appropriate file and lock its form fields.
+	 * @param parent View with the form fields to be locked.
+	 *************************************************************************************************/
 	private void saveCurrent(View parent) 
 	{
 		EditText text;

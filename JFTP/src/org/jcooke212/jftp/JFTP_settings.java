@@ -18,7 +18,6 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 {
 
 	private ServerFragmentAdapter mSectionsPagerAdapter;
-	private int currentTab;
 	private ViewPager mViewPager;
 
 	/*************************************************************************************************
@@ -76,7 +75,6 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
-		currentTab = tab.getPosition();
 	}
 
 	/*************************************************************************************************
@@ -91,8 +89,6 @@ public class JFTP_settings extends FragmentActivity implements ActionBar.TabList
 	 *************************************************************************************************/
 	@Override
 	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
-	{
-		currentTab = tab.getPosition();
-	}
+	{}
 
 }
