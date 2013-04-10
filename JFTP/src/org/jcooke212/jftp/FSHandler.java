@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.apache.commons.net.ftp.*;
-
 import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
@@ -77,29 +75,5 @@ public class FSHandler
 		    	currentDir = currentDir.substring(0, currentDir.lastIndexOf("/"));
 			}
 		}
-    }
-    
-    /*************************************************************************************************
-     * This class handles the user visible FileSystem on the server
-     * @author James Cooke
-     *************************************************************************************************/
-    public static class RemoteSystem
-    {
-    	public static void getFileSystem(ArrayList<String> list, Context appContext)
-    	{
-    		FTPClient ftp = new FTPClient();
-    		try 
-    		{
-    			ftp.connect("server.jcooke212.org");
-				if(ftp.login("james", "blah"))
-				{
-					Toast.makeText(appContext, "YAYYY!!!", Toast.LENGTH_LONG).show();
-				}
-			} 
-    		catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-    	}
     }
 }

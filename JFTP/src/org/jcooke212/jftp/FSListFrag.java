@@ -35,7 +35,21 @@ public class FSListFrag extends ListFragment
 		}
 		else if(type.equals("display_remote"))
 		{
-			FSHandler.RemoteSystem.getFileSystem(list, getActivity());
+			try
+			{
+				AsyncListFiles remote = new AsyncListFiles();
+				remote.execute("noth");
+				String[] result = remote.get();
+				for(int i = 0; i < result.length; i++)
+				{
+					list.add(result[i]);
+				}
+			}
+			catch(Exception ex)
+			{
+				
+			}
+			
 		}
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
 		setListAdapter(adapter);	
